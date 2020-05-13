@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30011.22
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsulAPI", "ConsulAPI\ConsulAPI.csproj", "{3FC81A62-DB94-41CF-B694-A136948DCE38}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FC81A62-DB94-41CF-B694-A136948DCE38}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FC81A62-DB94-41CF-B694-A136948DCE38}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FC81A62-DB94-41CF-B694-A136948DCE38}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FC81A62-DB94-41CF-B694-A136948DCE38}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4821EAF4-3633-4BD0-AB70-13AF69552D08}
+	EndGlobalSection
+EndGlobal
