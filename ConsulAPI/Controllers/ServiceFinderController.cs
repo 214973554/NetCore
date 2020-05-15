@@ -5,7 +5,9 @@ using Newtonsoft.Json;
 using System;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using Utils;
 
 namespace ConsulAPI.Controllers
 {
@@ -25,27 +27,10 @@ namespace ConsulAPI.Controllers
         [Route("api/[controller]/Get"), HttpGet]
         public string Get()
         {
-            var service = GetService(consulAddress: Configuration["ConsulOption:ConsulAddress"], serviceName: Configuration["ConsulOption:ServiceName"]);
+            var service = ConsulHelper.GetService(consulAddress: Configuration["ConsulOption:ConsulAddress"], serviceName: Configuration["ConsulOption:ServiceName"]);
             return $@"CatalogService:{JsonConvert.SerializeObject(service)}";
         }
 
-        /// <summary>
-        /// 通过consul服务发现，随机返回服务信息
-        /// </summary>
-        /// <param name="consulAddress"></param>
-        /// <param name="serviceName"></param>
-        /// <returns></returns>
-        private CatalogService GetService(string consulAddress, string serviceName)
-        {
-            using (ConsulClient client = new ConsulClient((c) => { c.Address = new Uri(consulAddress); }))
-            {
-                var services = client.Catalog.Service(serviceName).Result.Response;
-                int seed = Guid.NewGuid().GetHashCode();
-                int serviceIndex = new Random(seed).Next(services.Length);
-                var service = services.ElementAt(serviceIndex);
-                return service;
-            }
-        }
 
         [Route("api/[controller]/GetName"), HttpGet]
         public string GetName(string name)
@@ -61,7 +46,7 @@ namespace ConsulAPI.Controllers
         [Route("api/[controller]/GetNameByService"), HttpGet]
         public string GetNameByService(string name)
         {
-            var service = GetService(consulAddress: Configuration["ConsulOption:ConsulAddress"], serviceName: Configuration["ConsulOption:ServiceName"]);
+            var service = ConsulHelper.GetService(consulAddress: Configuration["ConsulOption:ConsulAddress"], serviceName: Configuration["ConsulOption:ServiceName"]);
 
             using (var client = new HttpClient())
             {
@@ -70,5 +55,7 @@ namespace ConsulAPI.Controllers
                 return $"{service.ServiceAddress}:{service.ServicePort} -> result :{result.Result}";
             }
         }
+
+        
     }
 }
